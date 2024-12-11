@@ -1,0 +1,102 @@
+@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300;400;500;600;700&display=swap');
+*,p,h3,h2{box-sizing: border-box;margin: 0; padding: 0;}
+  button{border:none; background:none;}
+  body {font-family: 'Quicksand', sans-serif; user-select: none;}
+  img{max-width:100%;}
+  main{padding: 3rem 0; height: 100vh;}
+.leftLanding{display: flex; flex-direction: column; justify-content: space-between; height: 100%;}
+.carImage { padding-top: 8rem; width: 100%;display: flex;align-items: center;justify-content: center;}
+.carImage img{height: 33rem;}
+.landingButtons{display: flex; flex-direction: column; gap:0.5rem}
+.landingButtons button{width: 20rem; padding:0.5rem 1rem; border-radius: 4px;  border: 2px solid #FE9E12;}
+.bottomText p {font-size: xx-large;font-weight: 700;}
+.bottomText span{color: #FE9E12;}
+.loginPage{ background-image: linear-gradient(to top, #2D3AAA, #121744); overflow: hidden;}
+.loginCarIMg {
+  background-color: #fff;
+  padding-top: 8rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  justify-content: space-around;
+}
+.logoLogin img{width: 25rem;}
+.formContent{
+  background-color: #fff;
+  width: 30rem;
+  margin: 0 auto;
+  padding: 3rem  2rem 9rem;
+  border-radius: 4px;
+}
+.formContent h2{font-weight: 700;}
+.formContent span {
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+.formContent button, .formContent button:hover, .formContent button:active, .formContent button:focus-visible {width: 100%; background-color: #FE9E12; color: #fff; border: none;}
+.form-group { margin: 2rem 0; position: relative;}
+legend {
+  /* display: inline-block; */
+  position: absolute;
+  font-size: 12px;
+  font-weight: 500;
+  background: #fff;
+  left: 12px;
+  bottom: 20px;
+  width: 4rem;
+  border-radius: 100vw;
+  text-align: center;
+}
+.checkboxDiv {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 2rem 0;
+}
+.checkboxDiv span{display: flex; align-items: center; gap: 5px;}
+.checkboxDiv label {display: flex; align-items: center; gap:5px}
+.sidebar{border-right:1px solid rgba(182, 182, 182, 0.41); padding: 0; height: auto;}
+.logoDashboard{padding: 0.9rem 1rem; border-bottom:1px solid #c9ced3;}
+.list-group-item{background-color: #fff; border: none;}
+.contentMain{padding: 2rem 4rem;}
+.contentTop{display: flex; justify-content: space-between; align-items:center; padding: 1rem 3rem; border-bottom: 1px solid #c9ced3; background-color: #fff;}
+.dashIcon{display: flex; justify-content: space-around; align-items: center; gap: 5px; font-size: 1.5rem;}
+.navbar-nav .nav-link {
+  color: white !important;
+}
+
+.navbar-nav .nav-link:hover {
+  color: #ddd !important;
+}
+.dashIcon svg {
+  cursor: pointer;
+}
+/* Styling for the icons */
+i {
+  cursor: pointer;
+  font-size: 1.5rem;
+}
+
+i:hover {
+  color: #007bff;
+}
+.notFoundPage{height: 100vh; display: flex;justify-content: center; align-items: center; background-color: #FE9E12;background-color: #b0b0b0;}
+.forgetPassword{height: 100vh;}
+.forgetPassword .topbar{padding: 1rem 2rem;}
+.forgetform{height: 60vh; width: 80%; }
+.forgetform  button{background-color: #FE9E12; color: #fff;}
+.forgetform p{text-decoration: none; color: #000; font-size: 0.8rem;}
+.forgetImage {
+  background-color: #F0F0F0;
+  height: 80vh;
+  padding: 1rem;
+  display: flex;
+  align-items: center;
+  border-radius: 2rem;
+  justify-content: center;
+}
+.forgetImage img{width: 550px;}
+
+.Charts{justify-content: space-around;}
+.Charts>*{box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; border-radius:1rem;}
