@@ -95,7 +95,7 @@ const LoginForm = ({onLoginSuccess}) => {
           />
           Remember me
         </label>
-        <p className="forgotPassword fs-10 color-black">
+        <p className="forgotPassword">
         <Link to="/forgetPassword">Forgot Password?</Link>
         </p>
       </div>

@@ -1,27 +1,27 @@
 import React, { useState } from 'react';
 import Logo from "../assets/logo.png"
-import forgetPic from '../assets/forgetPic.png'
+import verifyPic from '../assets/verifyImg.png'
 import { Link } from 'react-router-dom';
 import { RxCaretLeft } from "react-icons/rx";
 import { useNavigate } from 'react-router-dom';
 
-const ForgetPage = () => {
+const VerifyPage = () => {
   const navigate = useNavigate();
-  const [email, setEmail] = useState('');
+  const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     setLoading(true);
-    navigate('/verifyEmail')
+    navigate('/createPassword')
   }
 
   const handleInputChange = (e) => {
-    setEmail(e.target.value);
+    setInput(e.target.value);
   }
 
   return (
-    <section className='forgetPassword'>
+    <section className='verifyPage'>
       <div className="topbar">
         <img src={Logo}
           alt="Logo"
@@ -32,29 +32,34 @@ const ForgetPage = () => {
       <div className="container">
         <div className="row">
           <div className="col-md-6 my-auto p-4">
-            <div className="forgetform ">
+            <div className="verifyform ">
               <Link to="/login"><p><span><RxCaretLeft /></span>Back to login</p></Link>
-              <h2 className= "pt-4">Forget your password?</h2>
-              <p className="fw-300 fs-10 py-2">Don’t worry, happens to all of us. Enter your email below to recover your password</p>
+              <h2 className= "pt-4">Verify code</h2>
+              <p className="fw-300 fs-10 py-2">An authentication code has been sent to your Email ID.</p>
               <form onSubmit={handleSubmit}>
                 <div className="form-group">
-                  <legend>Email</legend>
+                  <legend>Enter code</legend>
                   <input 
-                    type="email" 
+                    type="text" 
                     className="form-control" 
-                    value={email} 
+                    value={input} 
                     onChange={handleInputChange} 
                   />
+                  <p>Didn't receive a code? <span>Resend</span></p>
                 </div>
-                <button type="submit" className="form-control" disabled={loading}>
+                <button 
+                  type="submit" 
+                  className="form-control" 
+                  disabled={loading}
+                >
                   {loading ? 'Logging in...' : 'Submit'}
                 </button>
               </form>
             </div>
           </div>
           <div className="col-md-6">
-            <div className="forgetImage">
-              <img src={forgetPic} alt="" />
+            <div className="verifyImage">
+              <img src={verifyPic} alt="" />
             </div>
           </div>
         </div>
@@ -63,4 +68,4 @@ const ForgetPage = () => {
   )
 }
 
-export default ForgetPage
+export default VerifyPage

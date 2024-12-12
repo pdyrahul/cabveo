@@ -29,8 +29,8 @@ function App() {
             </div>
           </div>
           <div className="contentMain">
-          <h3>  Dashboard <span>Role : {auth.firstName} </span></h3>
-          <p className='mb-2'>Welcome </p>
+          <h3>Dashboard</h3>
+          <p className='mb-2'>Welcome {auth.firstName} </p>
           <div className="Charts d-flex gap-2">
           <BarChart/>
           <PieChart/>

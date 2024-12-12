@@ -44,10 +44,12 @@ legend {
   background: #fff;
   left: 12px;
   bottom: 20px;
-  width: 4rem;
+  width: auto;
   border-radius: 100vw;
   text-align: center;
+  padding: 0 5px;
 }
+.verifyform legend{top:-10px;}
 .checkboxDiv {
   display: flex;
   justify-content: space-between;
@@ -82,12 +84,14 @@ i:hover {
   color: #007bff;
 }
 .notFoundPage{height: 100vh; display: flex;justify-content: center; align-items: center; background-color: #FE9E12;background-color: #b0b0b0;}
-.forgetPassword{height: 100vh;}
-.forgetPassword .topbar{padding: 1rem 2rem;}
-.forgetform{height: 60vh; width: 80%; }
-.forgetform  button{background-color: #FE9E12; color: #fff;}
-.forgetform p{text-decoration: none; color: #000; font-size: 0.8rem;}
-.forgetImage {
+.forgetPassword, .VerifyPage, .createPage{height: 100vh;}
+.forgetform h2, .verifyform h2, .createform h2{font-weight: 700;}
+.forgetPassword .topbar, .verifyPage .topbar, .createPage .topbar{padding: 1rem 2rem;}
+.forgetform, .verifyform, .createform{height: 60vh; width: 80%; }
+.forgetform  button, .verifyform button, .createform button{background-color: #FE9E12; color: #fff;}
+.forgetform p ,.verifyform p, createform p{text-decoration: none; color: #000; font-size: 0.8rem; font-weight: 400;}
+.forgetform p  span,.verifyform p span{color: #FE9E12;}
+.forgetImage,.verifyImage,.createImage {
   background-color: #F0F0F0;
   height: 80vh;
   padding: 1rem;
