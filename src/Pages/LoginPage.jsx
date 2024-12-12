@@ -2,7 +2,7 @@ import React, {useEffect} from 'react';
 import { useNavigate } from 'react-router-dom';
 import LoginForm from '../Components/LoginFrom';
 import logincar from "../assets/loginCar.png";
-import logo from "../assets/logo.png";
+import logo from "../assets/Logo.png";
 import { useAuthContext } from '../AuthContext';
 
 

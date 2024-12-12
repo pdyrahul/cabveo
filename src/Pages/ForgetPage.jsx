@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from "../assets/logo.png"
+import Logo from "../assets/Logo.png"
 import forgetPic from '../assets/forgetPic.png'
 import { Link } from 'react-router-dom';
 import { RxCaretLeft } from "react-icons/rx";

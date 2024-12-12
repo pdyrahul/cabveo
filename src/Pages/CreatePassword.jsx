@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import Logo from "../assets/logo.png"
+import Logo from "../assets/Logo.png"
 import createPic from '../assets/freepik--Characters--inject-46.png'
 import { useNavigate } from 'react-router-dom';
 
