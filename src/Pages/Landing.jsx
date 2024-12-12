@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from '../Components/Button'
-import Logo from "../assets/logo.png"
+import Logo from "../assets/Logo.png"
 import Car from "../assets/car.png"
 const Landing = () => {
     return (
