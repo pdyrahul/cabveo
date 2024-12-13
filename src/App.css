@@ -101,6 +101,12 @@ i:hover {
   justify-content: center;
 }
 .forgetImage img{width: 550px;}
+.contentMainHeader{display: flex; justify-content: space-between;margin:2rem 0;}
+.cardsComponent{ display: flex; justify-content: space-between; gap: 1rem; box-shadow: rgba(0, 0, 0, 0.1) 0px 4px 12px; padding:1rem 2rem; border-radius: 1rem;}
+.cardsComponent .icon{ height: 50px; width: 50px; border-radius: 100vw;display: flex; justify-content: center; align-items: center;}
+
+
+
 
 .Charts{justify-content: space-around;}
 .Charts>*{box-shadow: rgba(60, 64, 67, 0.3) 0px 1px 2px 0px, rgba(60, 64, 67, 0.15) 0px 1px 3px 1px; border-radius:1rem;}

@@ -13,6 +13,13 @@ function AuthProvider({ children }) {
   const [auth, setAuth] = useState(null);
   const setUserAuth = (data) => {
     setIsLoggedIn(true)
+    console.log(data.accessToken);
+    let token = data.accessToken;
+    let tokenId = JSON.parse(atob(token.split('.')[1]));
+    console.log(tokenId);
+    let userId= tokenId['id'];
+    console.log(userId);
+    localStorage.setItem('userId', userId);
     localStorage.setItem('veocabJWTToken', data.accessToken)
     localStorage.setItem('veocabUser', JSON.stringify(data.data))
     setAuth(data.data)

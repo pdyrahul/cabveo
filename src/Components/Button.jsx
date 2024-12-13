@@ -10,7 +10,7 @@ const Button = ({ label, backgroundColor, color }) => {
 
   return (
     <button
-      style={{ backgroundColor: backgroundColor, color: color }}
+    style={{ backgroundColor: backgroundColor, color: color }}
       onClick={handleClick}
     >
       {label}
