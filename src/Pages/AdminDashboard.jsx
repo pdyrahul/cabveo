@@ -14,6 +14,9 @@ import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
 
 function App() {
+  // Access the API URL from the environment variables
+  const apiUrl = import.meta.env.VITE_API_URL;
+
   const { auth } = useAuthContext();
 
   const [data, setData] = useState({
@@ -28,13 +31,13 @@ function App() {
     try {
       let token = localStorage.getItem('veocabJWTToken');
       const [userResponse, bookingResponse] = await Promise.all([
-        axios.get('https://veocab-project.vercel.app/api/v1/admin/profile/', {
+        axios.get(`${apiUrl}/admin/profile/`, {
           headers: {
             Authorization: `Bearer ${token}`,
             'Content-Type': 'application/json',
           },
         }),
-        axios.get('https://veocab-project.vercel.app/api/v1/admin/getBooking'),
+        axios.get(`${apiUrl}/admin/getBooking`),
       ]);
 
       const userData = userResponse.data.data;
@@ -76,13 +79,13 @@ function App() {
               placeholder="Search..."
               style={{ width: '250px' }}
             />
-
             <div className="dashIcon">
               <CiSettings />
               <IoNotificationsCircleOutline />
               <PiUserCircle />
             </div>
           </div>
+
           <div className="contentMain">
             <h3>Dashboard</h3>
             <p className="mb-2">Welcome {auth.firstName}</p>
