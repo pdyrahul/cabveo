@@ -9,45 +9,56 @@ import { useAuthContext } from '../AuthContext';
 import UserType from '../../constant';
 import axios from 'axios';
 import Cards from '../Components/Cards';
-import { FaUsers, FaUserTie, FaCar } from "react-icons/fa";
-function App() {
+import { FaUsers, FaUserTie, FaUserCog, FaHandHoldingUsd } from "react-icons/fa";
+import Skeleton from 'react-loading-skeleton';
+import 'react-loading-skeleton/dist/skeleton.css';
 
+function App() {
   const { auth } = useAuthContext();
 
-  const [data, setData] = useState([]);
-  const [hostCount, setHostCount] = useState(0);
-  const [userCount, setUserCount] = useState(0);
-  const [driverCount, setDriverCount] = useState(0);
+  const [data, setData] = useState({
+    users: [],
+    bookings: 0,
+  });
+
+  const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
+    setLoading(true);
     try {
       let token = localStorage.getItem('veocabJWTToken');
-      let apiUrl = 'https://veocab-project.vercel.app/api/v1/admin/profile/'
-      const response = await axios.get(apiUrl, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-          'Content-Type': 'application/json',
-          'Cache-Control': 'no-cache', // Prevent caching
-          'Pragma': 'no-cache',        // HTTP 1.0 backward compatibility
-          'Expires': '0',
-        }
-      });
-      setData(response.data);
-      let result = response?.data.data;
-      if (result.length) {
-        const hostCount = result.filter((item) => item.user.userType === UserType.HOST).length;
-        const userCount = result.filter((item) => item.user.userType === UserType.USER).length;
-        const driverCount = result.filter((item) => item.user.userType === UserType.DRIVER).length;
-        setHostCount(hostCount);
-        setUserCount(userCount);
-        setDriverCount(driverCount);
+      const [userResponse, bookingResponse] = await Promise.all([
+        axios.get('https://veocab-project.vercel.app/api/v1/admin/profile/', {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        }),
+        axios.get('https://veocab-project.vercel.app/api/v1/admin/getBooking'),
+      ]);
 
-      }
+      const userData = userResponse.data.data;
+      const bookingData = bookingResponse.data.data.docs.length;
+
+      const userCount = userData.filter((item) => item.user.userType === UserType.USER).length;
+      const driverCount = userData.filter((item) => item.user.userType === UserType.DRIVER).length;
+      const hostCount = userData.filter((item) => item.user.userType === UserType.HOST).length;
+
+      // Dynamically set the data with actual counts
+      setData({
+        users: [
+          { title: 'Total Users', count: userCount, icon: <FaUserTie />, bgcolor: "#DCFAF8", color: "#16DBCC" },
+          { title: 'Total Drivers', count: driverCount, icon: <FaUserCog />, bgcolor: "#FFE0EB", color: "#FF82AC" },
+          { title: 'Total Hosts', count: hostCount, icon: <FaUsers />, bgcolor: "#FFF5D9", color: "#FFBB38" },
+        ],
+        bookings: bookingData,
+      });
     } catch (error) {
-      console.error(error);
+      console.error("Error fetching data:", error);
+    } finally {
+      setLoading(false);
     }
   };
-
 
   useEffect(() => {
     fetchData();
@@ -66,7 +77,7 @@ function App() {
               style={{ width: '250px' }}
             />
 
-            <div className="dashIcon" >
+            <div className="dashIcon">
               <CiSettings />
               <IoNotificationsCircleOutline />
               <PiUserCircle />
@@ -74,14 +85,40 @@ function App() {
           </div>
           <div className="contentMain">
             <h3>Dashboard</h3>
-            <p className='mb-2'>Welcome {auth.firstName} </p>
-            <div className='contentMainHeader' >
-              <Cards Icon={<FaUserTie />} Titel="Total Users" Data={userCount} bgcolor="#DCFAF8" color="#16DBCC" />
-              <Cards Icon={<FaCar />} Titel="Total Drivers" Data={driverCount} bgcolor="#FFE0EB" color="#FF82AC" />
-              <Cards Icon={<FaUsers />} Titel="Total Hosts" Data={hostCount} bgcolor="#FFF5D9" color="#FFBB38" />
-              <Cards Icon={<FaCar />} Titel="Total Drivers" Data={driverCount} bgcolor="#E7EDFF" color="#396AFF" />
+            <p className="mb-2">Welcome {auth.firstName}</p>
 
+            {/* Show Skeleton Loaders while data is loading */}
+            <div className="contentMainHeader">
+              {loading ? (
+                [1, 2, 3, 4].map((_, index) => (
+                  <div key={index} style={{ width: '250px', height: '120px' }}>
+                    <Skeleton height="100%" borderRadius="10px" />
+                  </div>
+                ))
+              ) : (
+                <>
+                  {/* Dynamically render user cards */}
+                  {data.users.map((user, index) => (
+                    <Cards
+                      key={index}
+                      Icon={user.icon}
+                      Titel={user.title}
+                      Data={user.count}
+                      bgcolor={user.bgcolor}
+                      color={user.color}
+                    />
+                  ))}
+                  <Cards
+                    Icon={<FaHandHoldingUsd />}
+                    Titel="Total Bookings"
+                    Data={data.bookings}
+                    bgcolor="#E7EDFF"
+                    color="#396AFF"
+                  />
+                </>
+              )}
             </div>
+
             <div className="Charts d-flex gap-2">
               <BarChart />
               <PieChart />
