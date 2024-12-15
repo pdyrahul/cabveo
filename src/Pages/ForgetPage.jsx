@@ -44,6 +44,7 @@ const ForgetPage = () => {
                     className="form-control" 
                     value={email} 
                     onChange={handleInputChange} 
+                    required
                   />
                 </div>
                 <button type="submit" className="form-control" disabled={loading}>
