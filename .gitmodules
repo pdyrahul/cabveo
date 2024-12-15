@@ -1,0 +1,3 @@
+[submodule "veocab"]
+path = veocab
+url = https://github.com/pdyrahul/cabveo.git
