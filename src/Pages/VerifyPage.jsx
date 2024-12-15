@@ -43,7 +43,8 @@ const VerifyPage = () => {
                     type="text" 
                     className="form-control" 
                     value={input} 
-                    onChange={handleInputChange} 
+                    onChange={handleInputChange}
+                    required 
                   />
                   <p>Didn't receive a code? <span>Resend</span></p>
                 </div>

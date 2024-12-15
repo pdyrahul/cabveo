@@ -85,7 +85,7 @@ function createData(name, phone, email, registration, kyc) {
 const columns = [
   { id: 'name', label: 'Name', minWidth: 160 },
   { id: 'email', label: 'Email', minWidth: 160 },
-  { id: 'phone',label: 'Phone No', minWidth: 160},
+  { id: 'phone', label: 'Phone No', minWidth: 160 },
   { id: 'registration', label: 'Registration', minWidth: 160 },
   { id: 'kyc', label: 'KYC', minWidth: 100 }
 ];
@@ -116,8 +116,8 @@ export default function CustomPaginationActionsTable({ users }) {
             {columns.map((column) => (
               <TableCell
                 key={column.id}
-                style={{ minWidth: column.minWidth, backgroundColor: 'black', color:'white' }}
-                
+                style={{ minWidth: column.minWidth, backgroundColor: 'black', color: 'white' }}
+
               >
                 {column.label}
               </TableCell>

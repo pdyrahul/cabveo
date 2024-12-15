@@ -52,7 +52,8 @@ const VerifyPage = () => {
                     type="password" 
                     className="form-control" 
                     value={password} 
-                    onChange={handlePasswordChange} 
+                    onChange={handlePasswordChange}
+                    required 
                   />
                 </div>
                 <div className="form-group">
@@ -62,6 +63,7 @@ const VerifyPage = () => {
                     className="form-control" 
                     value={confirmPassword} 
                     onChange={handleConfirmPasswordChange} 
+                    required
                   />
                 </div>
                 {error && <div className="error-message">{error}</div>}
