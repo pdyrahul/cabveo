@@ -9,12 +9,11 @@ import { useAuthContext } from '../AuthContext';
 import UserType from '../../constant';
 import axios from 'axios';
 import Cards from '../Components/Cards';
-import { FaUsers, FaUserTie, FaUserCog, FaHandHoldingUsd } from "react-icons/fa";
+import { FaUsers, FaUserTie, FaUserCog, FaHandHoldingUsd, FaMoneyBill } from "react-icons/fa";
 import Skeleton from 'react-loading-skeleton';
 import 'react-loading-skeleton/dist/skeleton.css';
-
-function App() {
-  // Access the API URL from the environment variables
+import CustomPaginationActionsTable from '../Components/DataTable/tableData';
+const AdminDashboard = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const { auth } = useAuthContext();
@@ -22,15 +21,16 @@ function App() {
   const [data, setData] = useState({
     users: [],
     bookings: 0,
+    pricing: [],
   });
-
+  const [userList, setUserList] = useState([]);
   const [loading, setLoading] = useState(true);
 
   const fetchData = async () => {
     setLoading(true);
     try {
       let token = localStorage.getItem('veocabJWTToken');
-      const [userResponse, bookingResponse] = await Promise.all([
+      const [userResponse, bookingResponse, pricingResponse] = await Promise.all([
         axios.get(`${apiUrl}/admin/profile/`, {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -38,10 +38,17 @@ function App() {
           },
         }),
         axios.get(`${apiUrl}/admin/getBooking`),
+        axios.get(`${apiUrl}/admin/Pricing`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+            'Content-Type': 'application/json',
+          },
+        })
       ]);
-
       const userData = userResponse.data.data;
+      setUserList(userData);
       const bookingData = bookingResponse.data.data.docs.length;
+      const pricingData = pricingResponse.data.data;
 
       const userCount = userData.filter((item) => item.user.userType === UserType.USER).length;
       const driverCount = userData.filter((item) => item.user.userType === UserType.DRIVER).length;
@@ -55,6 +62,7 @@ function App() {
           { title: 'Total Hosts', count: hostCount, icon: <FaUsers />, bgcolor: "#FFF5D9", color: "#FFBB38" },
         ],
         bookings: bookingData,
+        pricing: pricingData,
       });
     } catch (error) {
       console.error("Error fetching data:", error);
@@ -122,15 +130,29 @@ function App() {
               )}
             </div>
 
-            <div className="Charts d-flex gap-2">
+            <div className="Charts d-flex gap-2 my-4">
+              {/* Pass the pricing data to the chart */}
               <BarChart />
               <PieChart />
             </div>
+            {loading ? (
+              <Skeleton height={400} width="100%" />
+            ) : (
+              userList.length > 0 && <CustomPaginationActionsTable users={userList} />
+            )}
+            <div className='my-5'>
+            {loading ? (
+              <Skeleton height={400} width="100%" />
+            ) : (
+              userList.length > 0 && <CustomPaginationActionsTable users={userList} />
+            )}
+            </div>
+            
           </div>
         </div>
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default AdminDashboard;

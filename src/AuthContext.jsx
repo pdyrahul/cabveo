@@ -1,7 +1,6 @@
 
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { axiosWithToken } from "./lib/axios";
-
 // Create the context
 export const AuthContext = createContext({});
 
