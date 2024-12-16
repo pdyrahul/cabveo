@@ -7,7 +7,7 @@ const Landing = () => {
         <main>
             <div className='container'>
                 <div className="row">
-                    <div className="col-md-4">
+                    <div className="col-md-4 col-12">
                         <div className="leftLanding">
                             <div className='logo'>
                                 <img src={Logo} alt='Logo' />
@@ -22,7 +22,7 @@ const Landing = () => {
                             </div>
                         </div>
                     </div>
-                    <div className="col-md-8">
+                    <div className="col-md-8 col-12">
                         <div className="carImage my-auto">
                             <img src={Car} alt="" />
                         </div>

@@ -4,11 +4,11 @@
   body {font-family: 'Quicksand', sans-serif; user-select: none;}
   img{max-width:100%;}
   main{padding: 3rem 0; height: 100vh;}
-.leftLanding{display: flex; flex-direction: column; justify-content: space-between; height: 100%;}
+.leftLanding{display: flex; flex-direction: column; justify-content: space-between; height: 100%; gap:5rem;}
 .carImage { padding-top: 8rem; width: 100%;display: flex;align-items: center;justify-content: center;}
-.carImage img{height: 33rem;}
+.carImage img{aspect-ratio: 2/1;}
 .landingButtons{display: flex; flex-direction: column; gap:0.5rem}
-.landingButtons button{width: 20rem; padding:0.5rem 1rem; border-radius: 4px;  border: 2px solid #FE9E12;}
+.landingButtons button{  width: clamp(20rem, auto, 100%); padding:0.5rem 1rem; border-radius: 4px;  border: 2px solid #FE9E12;}
 .bottomText p {font-size: xx-large;font-weight: 700;}
 .bottomText span{color: #FE9E12;}
 .loginPage{ background-image: linear-gradient(to top, #2D3AAA, #121744); overflow: hidden;}
@@ -21,10 +21,11 @@
   height: 100vh;
   justify-content: space-around;
 }
-.logoLogin img{width: 25rem;}
+.logoLogin img{aspect-ratio: 1/0;}
 .formContent{
   background-color: #fff;
-  width: 30rem;
+  width:auto;
+  max-width: 30rem;
   margin: 0 auto;
   padding: 3rem  2rem 9rem;
   border-radius: 4px;
